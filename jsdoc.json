@@ -1,0 +1,73 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": [
+      "jsdoc"
+    ]
+  },
+  "source": {
+    "include": [
+      "index.js",
+      "src",
+      "package.json",
+      "README.md"
+    ],
+    "includePattern":  "\\.(jsx|js|ts|tsx)$",
+    "excludePattern": "(node_modules/|docs/|src/config/|src/|tmp)"
+  },
+  "plugins": [
+    "plugins/markdown",
+    "node_modules/better-docs/typescript",
+    "node_modules/better-docs/category",
+    "node_modules/better-docs/typedef-import"
+  ],
+  "templates": {
+    "referenceTitle": "img-js",
+    "disableSort": false,
+    "cleverLinks": false,
+    "collapse": false,
+    "monospaceLinks": true,
+    "useLongnameInNav": false,
+    "showInheritedInNav": true
+  },
+  "opts": {
+    "destination": "docs",
+    "readme": "README.md",
+    "encoding": "utf8",
+    "private": false,
+    "recurse": true,
+    "template": "./node_modules/better-docs"
+  },
+  "docdash": {
+    "static": true,
+    "sort": true,
+    "sectionOrder": [
+      "Namespaces",
+      "Modules",
+      "Classes",
+      "Interfaces",
+      "Externals",
+      "Events",
+      "Mixins",
+      "Tutorials"
+    ],
+    "meta": {
+      "title": "img-js",
+      "keyword": "Manipulate Images in Node.js"
+    },
+    "search": true,
+    "collapse": true,
+    "wrap": false,
+    "typedefs": true,
+    "navLevel": 2,
+    "removeQuotes": "all",
+    "menu": {
+      "Repository": {
+        "href": "https://github.com/mfeyx",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "github-link"
+      }
+    }
+  }
+}

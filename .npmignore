@@ -1,0 +1,5 @@
+.eslintrc.js
+.eslintignore
+jsdoc.json
+tsconfig.json
+package-lock.json
