@@ -1,5 +1,5 @@
 {
-  "name": "img-js",
+  "name": "img-js-node",
   "version": "0.1.0",
   "description": "Manipulate Images in Node.js",
   "main": "index.js",
