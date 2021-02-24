@@ -1,9 +1,9 @@
 const fs = require('fs')
 const jpeg = require('jpeg-js')
 
-/** @typedef { number[] }     Array1D   One Dimensional Array */
-/** @typedef { number[][] }   Array2D Two Dimensional Array */
-/** @typedef { number[][][] } Array3D Three Dimensional Array */
+/** @typedef { number[] }     Array1D  One Dimensional Array */
+/** @typedef { number[][] }   Array2D  Two Dimensional Array */
+/** @typedef { number[][][] } Array3D  Three Dimensional Array */
 
 /**
  * @typedef {object} Options
@@ -91,8 +91,7 @@ class Image {
    * @param {Buffer} buffer
    */
   fromBuffer (buffer) {
-    const decoded = this.decode(buffer, { useTArray: true })
-    const { data, width, height } = decoded
+    const { data, width, height } = this.decode(buffer, { useTArray: true })
     this.data = Array.from(data)
     this.width = width
     this.height = height
@@ -224,9 +223,11 @@ class Image {
   }
 
   pixels () {
-    if(!this.isFlat) { this.flatten() }
+    if (!this.isFlat) {
+      return this
+    }
 
-    const [width, height, slice] = [this.width, this.height, this.channels]
+    const [width, height, slice] = this.shape
     const n = this.data.length
 
     let i = 0
