@@ -68,12 +68,14 @@ class Image {
      */
     this.isFlat = true
 
-    if (this.options && this.options.fname) {
-      this.fromFile(this.options.fname)
-    }
+    if (this.options) {
+      if (this.options.fname) {
+        this.fromFile(this.options.fname)
+      }
 
-    if (this.options && this.options.buffer) {
-      this.fromBuffer(this.options.buffer)
+      if (this.options.buffer) {
+        this.fromBuffer(this.options.buffer)
+      }
     }
   }
 
