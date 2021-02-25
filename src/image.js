@@ -6,6 +6,15 @@ const jpeg = require('jpeg-js')
 /** @typedef { number[][][] } Array3D  Three Dimensional Array */
 
 /**
+ * @typedef { object } InitValues  Three Dimensional Array
+ * @property { Array1D } data
+ * @property { number } width
+ * @property { number } height
+ * @property { number } channels
+ * @property { number[] } shape
+*/
+
+/**
  * @typedef {object} Options
  * @property {string} [fname]
  * @property {Buffer} [buffer]
@@ -98,6 +107,15 @@ class Image {
     this.width = width
     this.height = height
     this.shape = [this.width, this.height, this.channels]
+
+    /** @type { InitValues } */
+    this._initValues = {
+      data: this.data,
+      width: this.width,
+      height: this.height,
+      channels: this.channels,
+      shape: this.shape
+    }
     return this
   }
 
@@ -267,6 +285,10 @@ class Image {
     return this
   }
 
+  /**
+   * Rotate the Image clockwise by 90°
+   * @returns { Image }
+   */
   rotate () {
     if (this.isFlat) { this.pixels() }
     const pixels = this.data
@@ -290,6 +312,22 @@ class Image {
     this.width = this.data[0].length
     this.height = this.data.length
     this.shape = [this.width, this.height, this.channels]
+    return this
+  }
+
+  /**
+   * Restore the Inital Image Values
+   * @returns { Image }
+   */
+  restore () {
+    const initValues = this._initValues
+    if (initValues) {
+      this.data = initValues.data
+      this.width = initValues.width
+      this.height = initValues.height
+      this.channels = initValues.channels
+      this.shape = initValues.shape
+    }
     return this
   }
 
