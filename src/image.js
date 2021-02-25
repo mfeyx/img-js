@@ -1,6 +1,8 @@
 const fs = require('fs')
 const jpeg = require('jpeg-js')
 
+const proc = require('./processing')
+
 /** @typedef { number[] }     Array1D  One Dimensional Array */
 /** @typedef { number[][] }   Array2D  Two Dimensional Array */
 /** @typedef { number[][][] } Array3D  Three Dimensional Array */
@@ -213,17 +215,38 @@ class Image {
     console.log(this.data)
   }
 
+  reduce() {
+    this._processImage(proc.reduce)
+    return this
+  }
+
+  /**
+   *
+   * @param {boolean} [soft=true]
+   */
+  mask (soft = true) {
+    if(soft) {
+      this.grayscale()
+    } else {
+      this.blackwhite()
+    }
+    this.reduce()
+    return this
+  }
+
   blackwhite () {
     /** @param {Array1D} data */
-    const fn = data => data.map(px => Math.round(px / 255) === 1 ? 255 : 0)
-    this._processImage(fn)
+    this._processImage(proc.blackwhite)
+    return this
+  }
+
+  grayscale () {
+    this._processImage(proc.grayscale)
     return this
   }
 
   invert () {
-    /** @param {Array1D} data */
-    const fn = data => data.map(px => Math.abs(px - 255))
-    this._processImage(fn)
+    this._processImage(proc.invert)
     return this
   }
 
@@ -327,6 +350,7 @@ class Image {
       this.height = initValues.height
       this.channels = initValues.channels
       this.shape = initValues.shape
+      this.isFlat = true
     }
     return this
   }
