@@ -25,9 +25,14 @@ const img = new Image({fname: 'my-image-file.jpg'})
 
 **Currently available methods:**
 
-- rotate
 - blackwhite
+- grayscale
 - invert
+- mask
+- reduce
+- rotate
+
+### Examples
 
 #### rotate
 Clockwise rotation by 90°
