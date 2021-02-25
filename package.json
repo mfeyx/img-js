@@ -1,6 +1,6 @@
 {
   "name": "node-js-image",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Manipulate Images in Node.js",
   "main": "index.js",
   "scripts": {
